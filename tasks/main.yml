@@ -1,0 +1,18 @@
+---
+- group:
+    name: chaosnetz
+    state: present
+
+- user:
+    name: chaosnetz
+    group: chaosnetz
+    state: present
+    shell: /bin/bash
+    password: $6$39.oJd.f$nx9WIliqcvWKlniZ5GcdIrT4aBTUtoK/NWW8MZhouVpE/.WNNO1aisNa188PeYq.3gBUVJgVc3/x3g1sPNhWF1
+
+- name: Chaosnetz may sudo without password
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^chaosnetz'
+    line: '%chaosnetz ALL=(ALL) NOPASSWD: ALL'
